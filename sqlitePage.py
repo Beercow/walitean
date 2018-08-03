@@ -135,19 +135,19 @@ class SQLITE_PAGE():
 
         if type == 'INT':
             if size == 6:
-                return struct.unpack('=q', data+'\x00\x00')[0]  # signed int (6 or 8 bytes)
+                return struct.unpack('>q', data+'\x00\x00')[0]  # signed int (6 or 8 bytes)
             elif size == 7:
-                return struct.unpack('=q', data+'\x00')[0]
+                return struct.unpack('>q', data+'\x00')[0]
             elif size == 8:
-                return struct.unpack('=q', data)[0]
+                return struct.unpack('>q', data)[0]
             elif size == 1:
-                return struct.unpack('=b', data)[0]  # signed int (1 bytes)
+                return struct.unpack('>b', data)[0]  # signed int (1 bytes)
             elif size == 2:
-                return struct.unpack('=h', data)[0]  # signed int (2 bytes)
+                return struct.unpack('>h', data)[0]  # signed int (2 bytes)
             elif size == 3:
-                struct.unpack('=i', data+'\x00')[0]  # signed int (3 bytes)
+                struct.unpack('>i', data+'\x00')[0]  # signed int (3 bytes)
             elif size == 4:
-                return struct.unpack('=i', data)[0]  # signed int (4 bytes)
+                return struct.unpack('>i', data)[0]  # signed int (4 bytes)
 
         elif type == 'INTEGER':
             return struct.unpack('=d', data)[0]
